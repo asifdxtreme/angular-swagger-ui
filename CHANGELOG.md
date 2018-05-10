@@ -1,39 +1,3 @@
-### 0.5.5 (2018-02-26)
-
- * Refactor module swagger-auth (beta) to be able to use multiple api keys (#86)
- * Allow dynamic changes of inputType
-
-### 0.5.4 (2017-11-22)
-
- * Implement oauth2 authorizations (beta)
- * Fix module swagger1-converter
- * Add support for RFC-6570 concerning query params
-
-### 0.5.3 (2017-11-13)
-
- * Allow displaying a link to download swagger spec
- * Fix error if ng-sanitize not used
- * Fix module external-references
- * Allow node version > 7 (#85)
-
-### 0.5.2 (2017-11-07)
-
- * Force re-publish on npm
-
-### 0.5.1 (2017-11-06)
-
- * Fix API explorer
- * Fix readme
-
-### 0.5.0 (2017-10-30)
-
- * Add support for OpenApi 3.0.0 (beta) (#80)
- * Add support for polymorphism
- * Refactor modules (rename, add priority, change arguments)
- * Generate models and samples only when required to make UI being displayed faster
- * Make text areas resizable
- * Get rid of bower
-
 ### 0.4.4 (2017-06-22)
 
  * Fix #76: paths with regexp

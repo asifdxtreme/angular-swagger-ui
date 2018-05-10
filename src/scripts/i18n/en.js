@@ -1,5 +1,5 @@
 /*
- * Orange angular-swagger-ui - v0.5.5
+ * Orange angular-swagger-ui - v0.4.4
  *
  * (C) 2015 Orange, all right reserved
  * MIT Licensed
@@ -58,8 +58,8 @@ angular
 				explorerHeaders: 'Response headers',
 				explorerLoading: 'Loading...',
 				explorerTryIt: 'Try it out!',
-				errorNoParserFound: 'No parser found for OpenApi specification of type {{type}}',
-				errorParseFailed: 'Failed to parse OpenApi specification: {{message}}',
+				errorNoParserFound: 'No parser found for Swagger specification of type {{type}} and version {{version}}',
+				errorParseFailed: 'Failed to parse Swagger specification: {{message}}',
 				errorJsonParse: 'Failed to parse JSON',
 				errorNoYamlParser: 'No YAML parser found, please make sure to include js-yaml library',
 				authRequired: 'Authorization required',
@@ -77,12 +77,8 @@ angular
 				authFlow: 'Flow',
 				authTokenUrl: 'Token URL',
 				authScopes: 'Scopes',
-				authDone: 'Done',
-				authAuthorize: 'Authorize',
-				authClientId: 'Client ID',
-				authClientSecret: 'Client secret',
-				authLogout: 'Logout',
-				authLogged: 'You\'re currently logged in'
+				authCancel: 'Cancel',
+				authAuthorize: 'Authorize'
 			});
 
 	});

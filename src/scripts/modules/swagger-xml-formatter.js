@@ -1,5 +1,5 @@
 /*
- * Orange angular-swagger-ui - v0.5.5
+ * Orange angular-swagger-ui - v0.4.4
  *
  * (C) 2015 Orange, all right reserved
  * MIT Licensed
@@ -61,5 +61,5 @@ angular
 
 	})
 	.run(function(swaggerModules, swaggerUiXmlFormatter) {
-		swaggerModules.add(swaggerModules.AFTER_EXPLORER_LOAD, swaggerUiXmlFormatter, 1);
+		swaggerModules.add(swaggerModules.AFTER_EXPLORER_LOAD, swaggerUiXmlFormatter);
 	});

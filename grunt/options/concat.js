@@ -6,18 +6,20 @@ module.exports = {
 		files: {
 			'dist/scripts/swagger-ui.js': [
 				'dist/scripts/swagger-ui.js',
-				'dist/scripts/controllers/*.js',
-				'dist/scripts/directives/*.js',
-				'dist/scripts/services/*.js',
+				'dist/scripts/swagger-client.js',
+				'dist/scripts/swagger-model.js',
+				'dist/scripts/swagger-modules.js',
+				'dist/scripts/swagger-parser.js',
+				'dist/scripts/swagger-i18n.js',
 				'dist/scripts/i18n/en.js',
 				'dist/scripts/templates.js'
 			],
 			'dist/scripts/modules/swagger-auth-ui-bootstrap-modal.js': [
 				'dist/scripts/modules/swagger-auth.js',
-				'node_modules/angular-ui-bootstrap/src/position/position.js',
-				'node_modules/angular-ui-bootstrap/src/multiMap/multiMap.js',
-				'node_modules/angular-ui-bootstrap/src/stackedMap/stackedMap.js',
-				'node_modules/angular-ui-bootstrap/src/modal/modal.js',
+				'bower_components/angular-ui-bootstrap/src/position/position.js',
+				'bower_components/angular-ui-bootstrap/src/multiMap/multiMap.js',
+				'bower_components/angular-ui-bootstrap/src/stackedMap/stackedMap.js',
+				'bower_components/angular-ui-bootstrap/src/modal/modal.js',
 				'dist/scripts/templates-auth.js',
 				'dist/scripts/templates-auth-deps.js'
 			],
@@ -49,13 +51,9 @@ module.exports = {
 				'copyright.txt',
 				'dist/scripts/modules/swagger-xml-formatter.min.js'
 			],
-			'dist/scripts/modules/swagger1-converter.min.js': [
+			'dist/scripts/modules/swagger1-to-swagger2-converter.min.js': [
 				'copyright.txt',
-				'dist/scripts/modules/swagger1-converter.min.js'
-			],
-			'dist/scripts/modules/openapi3-converter.min.js': [
-				'copyright.txt',
-				'dist/scripts/modules/openapi3-converter.min.js'
+				'dist/scripts/modules/swagger1-to-swagger2-converter.min.js'
 			],
 			'dist/scripts/modules/swagger-yaml-parser.min.js': [
 				'copyright.txt',

@@ -1,5 +1,5 @@
 /*
- * Orange angular-swagger-ui - v0.5.5
+ * Orange angular-swagger-ui - v0.4.4
  *
  * (C) 2015 Orange, all right reserved
  * MIT Licensed
@@ -58,8 +58,8 @@ angular
 				explorerHeaders: 'レスポンス ヘダー',
 				explorerLoading: 'ロード中...',
 				explorerTryIt: '試してください!',
-				errorNoParserFound: 'No parser found for OpenApi specification of type {{type}}',
-				errorParseFailed: 'OpenApiスペッキをパース心配になりました : {{message}}',
+				errorNoParserFound: 'No parser found for Swagger specification of type {{type}} and version {{version}}',
+				errorParseFailed: 'Swaggerスペッキをパース心配になりました : {{message}}',
 				errorJsonParse: 'JSONをパース心配なりました',
 				errorNoYamlParser: 'YAML パーサを見つかりませんでした、js-yaml libraryを追加お願いいたします',
 				authRequired: 'Authorization required',
@@ -77,12 +77,8 @@ angular
 				authFlow: 'Flow',
 				authTokenUrl: 'Token URL',
 				authScopes: 'Scopes',
-				authDone: 'Done',
-				authAuthorize: 'Authorize',
-				authClientId: 'Client ID',
-				authClientSecret: 'Client secret',
-				authLogout: 'Logout',
-				authLogged: 'You\'re currently logged in'
+				authCancel: 'Cancel',
+				authAuthorize: 'Authorize'
 			});
 
 	});

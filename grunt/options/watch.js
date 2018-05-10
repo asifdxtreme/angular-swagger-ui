@@ -16,7 +16,6 @@ module.exports = {
         },
         files: [
             'src/{,*/}*.html',
-            'src/templates/{,*/}*.html',
             'src/css/{,*/}*.css',
             'src/scripts/{,*/}*.js'
         ]

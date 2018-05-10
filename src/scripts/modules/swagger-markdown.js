@@ -1,5 +1,5 @@
 /*
- * Orange angular-swagger-ui - v0.5.5
+ * Orange angular-swagger-ui - v0.4.4
  *
  * (C) 2015 Orange, all right reserved
  * MIT Licensed
@@ -13,13 +13,13 @@ angular
 		/**
 		 * Module entry point
 		 */
-		this.execute = function(data) {
+		this.execute = function(parseResult) {
 			var deferred = $q.defer();
 			if (typeof $window.marked === 'undefined') {
-				console.error('AngularSwaggerUI: marked.js is missing');
+				console.error('SwaggerUiMarkdown: marked.js is missing');
 				deferred.resolve(false);
 			} else {
-				transformMarkdown(data.ui);
+				transformMarkdown(parseResult);
 				deferred.resolve(true);
 			}
 			return deferred.promise;
@@ -64,5 +64,5 @@ angular
 
 	})
 	.run(function(swaggerModules, swaggerUiMarkdown) {
-		swaggerModules.add(swaggerModules.BEFORE_DISPLAY, swaggerUiMarkdown, 1);
+		swaggerModules.add(swaggerModules.BEFORE_DISPLAY, swaggerUiMarkdown);
 	});

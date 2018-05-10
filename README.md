@@ -1,17 +1,18 @@
 # angular-swagger-ui
 
-`angular-swagger-ui` is an angularJS implementation of OpenAPI UI
+`angular-swagger-ui` is an angularJS implementation of [Swagger UI](http://swagger.io)
 
-[OpenAPI](https://www.openapis.org) (aka [Swagger](https://swagger.io)) helps you documenting your RESTful API.
+Swagger helps you documenting your RESTful API.
 
-OpenAPI UI helps developers discovering your RESTful API by providing an online documentation with an integrated API explorer.
+Swagger UI helps developers discovering your RESTful API by providing an online documentation with an integrated API explorer.
 
 ### Warning 
-> By default, only OpenAPI 2.0 is supported.
-To handle OpenAPI 3.0.0 please add module `openapi3-converter` see [Enable OpenAPI 3.0.0](#enable-openapi-300).
-To handle OpenAPI 1.2 please add module `swagger1-converter` see [Enable OpenAPI 1.2](#enable-openapi-12).
-To handle authorization please add module `swagger-auth` see [Enable authorization](#enable-authorization)
+> By default, only JSON Swagger 2.0 is supported.
+To handle Swagger 1.2 please add module `swagger1-to-swagger2-converter` see [Enable Swagger 1.2](#enable-swagger-12).
 To handle YAML please add module `swagger-yaml-parser` see [Enable YAML](#enable-yaml)
+
+> By default, Authorization is not supported.
+To handle authorization (oauth2 is not implemented) please add module `swagger-auth` see [Enable authorization](#enable-authorization)
 
 ## Demo
 
@@ -23,7 +24,7 @@ http://orange-opensource.github.io/angular-swagger-ui
 
 ### Install
 
-`npm install angular-swagger-ui`
+`bower install angular-swagger-ui --save`
 
 ### Dependencies
 
@@ -40,10 +41,10 @@ See LICENSE file for copyright details.
 
 Include `angular-swagger-ui` as a dependency into your application
 
-As some properties of OpenAPI specifications can be formatted as HTML:
+As some properties of Swagger specifications can be formatted as HTML:
 
-* You **SHOULD** include `ngSanitize` as a dependency into your application (avoids JS injection) if OpenAPI specifications are loaded from **untrusted** sources (see `dist/index.html` as an example)
-* You **CAN** add `trusted-sources="true"` as directive parameter (avoids embedding `ngSanitize`) if OpenAPI specifications are loaded from **trusted** sources (see `src/index.html` as an example)
+* You **SHOULD** include `ngSanitize` as a dependency into your application (avoids JS injection) if Swagger specifications are loaded from **untrusted** sources (see `dist/index.html` as an example)
+* You **CAN** add `trusted-sources="true"` as directive parameter (avoids embedding `ngSanitize`) if Swagger specifications are loaded from **trusted** sources (see `src/index.html` as an example)
 * You **MUST** at least choose one of the two previous solutions
 
 ```html
@@ -58,7 +59,7 @@ As some properties of OpenAPI specifications can be formatted as HTML:
 ```
 Create an HTML element in your angularJS application's template or in your HTML page
 ```html
-<div swagger-ui url="URLToYourOpenAPISpecification" api-explorer="true"></div>
+<div swagger-ui url="URLToYourSwaggerSpecification" api-explorer="true"></div>
 ```
 Add `swagger-ui.min.js` and `angular.min.js` at the end of the body
 ```html
@@ -86,20 +87,20 @@ Add `swagger-ui.min.css` and `bootstrap.min.css` to the head of the HTML page.
 #### API explorer
 Display or not API explorer, default is `false`
 ```html
-<div swagger-ui url="URLToYourOpenAPISpecification" api-explorer="true/false"></div>
+<div swagger-ui url="URLToYourSwaggerSpecification" api-explorer="true/false"></div>
 ```
 
-#### OpenAPI specification loading indicator
-`yourScopeVariable` will be assigned to `true` or `false` depending on OpenAPI specification loading status
+#### Swagger specification loading indicator
+`yourScopeVariable` will be assigned to `true` or `false` depending on Swagger specification loading status
 ```html
 <div ng-show="yourScopeVariable">loading ...</div>
-<div swagger-ui url="URLToYourOpenAPISpecification" loading="yourScopeVariable"></div>
+<div swagger-ui url="URLToYourSwaggerSpecification" loading="yourScopeVariable"></div>
 ```
 
 #### Error handler
 Define an error handler to catch errors, if none defined `console.error` is used
 ```html
-<div swagger-ui url="URLToYourOpenAPISpecification" error-handler="yourErrorHandler"></div>
+<div swagger-ui url="URLToYourSwaggerSpecification" error-handler="yourErrorHandler"></div>
 ```
 ```js
 $scope.yourErrorHandler = function(/*String or Object*/ message, /*Integer*/ code){
@@ -110,52 +111,41 @@ $scope.yourErrorHandler = function(/*String or Object*/ message, /*Integer*/ cod
 #### Permalinks
 Allows having a URL direct access to a group of operations or to an operation and making it unfolded at startup
 ```html
-<div swagger-ui url="URLToYourOpenAPISpecification" permalinks="true/false"></div>
+<div swagger-ui url="URLToYourSwaggerSpecification" permalinks="true/false"></div>
 ```
 
-#### download
-Display or not a link to download swagger file. 
-
-```html
-<!-- display link with url label -->
-<div swagger-ui url="URLToYourOpenAPISpecification" download></div>
-
-<!-- display link with specific key enter in swaggerTranslatorProvider -->
-<div swagger-ui url="URLToYourOpenAPISpecification" download="downloadLabel"></div>
-```
-
-#### OpenAPI validator
-Disable OpenAPI validator or define a custom OpenAPI validator.
+#### Swagger validator
+Disable Swagger validator or define a custom Swagger validator.
 If parameter not defined, the validator will be 'http://online.swagger.io/validator'
 ```html
-<div swagger-ui url="URLToYourOpenAPISpecification" validator-url="false or URL"></div>
+<div swagger-ui url="URLToYourSwaggerSpecification" validator-url="false or URL"></div>
 ```
 
 #### Parser type
-OpenAPI specification parser is chosen depending on the `Content-Type` of the specification response. If host serving your OpenAPI specification does not send `Content-Type: application/json` then you can force the parser to JSON:
+Swagger specification parser is chosen depending on the `Content-Type` of the specification response. If host serving your Swagger specification does not send `Content-Type: application/json` then you can force the parser to JSON:
 ```html
-<div swagger-ui url="URLToYourOpenAPISpecification" parser="json"></div>
+<div swagger-ui url="URLToYourSwaggerSpecification" parser="json"></div>
 ```
 
 #### Template URL
-Define a custom template to be used by OpenAPIUI
+Define a custom template to be used by SwaggerUI
 ```html
-<div swagger-ui url="URLToYourOpenAPISpecification" template-url="yourTemplatePath"></div>
+<div swagger-ui url="URLToYourSwaggerSpecification" template-url="yourTemplatePath"></div>
 ```
 
 #### Input type and input
-##### Render an OpenAPI specification from JSON object
+##### Render a Swagger specification from JSON object
 ```html
 <div swagger-ui input-type="json" input="yourJsonObject"></div>
 ```
 
-##### Render an OpenAPI specification from YAML string
+##### Render a Swagger specification from YAML string
 Make sure to use module `swagger-yaml-parser`, see [Enable YAML](#enable-yaml)
 ```html
 <div swagger-ui input-type="yaml" input="yourYamlString"></div>
 ```
 
-##### Render an OpenAPI specification from URL (same behavior as using "url" parameter)
+##### Render a Swagger specification from URL (same behavior as using "url" parameter)
 ```html
 <div swagger-ui input-type="url" input="yourURL"></div>
 ```
@@ -241,18 +231,6 @@ You can also use `swaggerTranslator` to internationalize your app by using a ser
 
 ## Customization
 
-#### Enable OpenAPI 3.0.0
-See [OpenAPI 3.0.0 spec](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md).
-Add `openapi3-converter.min.js` at the end of the body
-```html
-<body>
- 	...
- 	<script src="yourPathToAngularJS/angular.min.js"></script>
- 	<script src="yourPathToAngularSwaggerUI/dist/scripts/swagger-ui.min.js"></script>
- 	<script src="yourPathToAngularSwaggerUI/dist/scripts/modules/openapi3-converter.min.js"></script>
-</body>
-```
-
 #### Enable authorization
 `oauth` is not implemented, only `basic` and `API key` authorizations are implemented.
 Add `swagger-auth.min.js` at the end of the body
@@ -268,49 +246,24 @@ Add `swagger-auth.min.js` at the end of the body
 	<script type="text/javascript">
 		angular
 			.module('yourApp', ['swaggerUi', 'swaggerUiAuthorization'])
-			// what is below is required for oauth2 flows 'implicit' and 'accessCode' (ie. authorizationCode)
-			// what is below can also be used to initialize apiKey or Basic authorizations
-            .config(function(swaggerUiAuthProvider) {
-                swaggerUiAuthProvider.credentials({
-                    // optional
-                    apiKey: {
-                    	yourApiKeyName: 'yourApiKeyValue' // optional, can be used to initialize api key value
-                    },
-                    // optional
-                    basic: {
-                    	login: 'yourLogin', // optional, can be used to initialize basic login
-                    	password: 'yourPassword' // optional, can be used to initialize basic password
-                    },
-                    // what is below is required for oauth2 flows 'implicit' and 'accessCode' (ie. authorizationCode)
-                    oauth2: {
-                    	clientId: 'yourClientId', // optional, can be used to initialize oauth2 credentials
-                    	clientSecret: 'yourClientSecret', // optional, can be used to initialize oauth2 credentials
-                    	login: 'yourLogin', // optional, can be used to initialize oauth2 or basic credentials
-                    	password: 'yourPassword', // optional, can be used to initialize oauth2 or basic credentials
-                    	apiKey: 'yourApiKey', // optional, can be used to initialize API key credentials
-                    	redirectUrl: 'yourPathToAngularSwaggerUI/oauth2-redirect.html' // required for oauth2 flow 'implicit' and 'accessCode' (ie. authorizationCode)
-                    },
-                });
-            })
 			...
 	</script>
 </body>
 ```
 
-#### Enable OpenAPI [aka Swagger] 1.2
-See [OpenAPI 1.2 spec](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/1.2.md).
-Add `swagger1-converter.min.js` at the end of the body
+#### Enable Swagger 1.2
+Add `swagger1-to-swagger2-converter.min.js` at the end of the body
 ```html
 <body>
  	...
  	<script src="yourPathToAngularJS/angular.min.js"></script>
  	<script src="yourPathToAngularSwaggerUI/dist/scripts/swagger-ui.min.js"></script>
- 	<script src="yourPathToAngularSwaggerUI/dist/scripts/modules/swagger1-converter.min.js"></script>
+ 	<script src="yourPathToAngularSwaggerUI/dist/scripts/modules/swagger1-to-swagger2-converter.min.js"></script>
 </body>
 ```
 
-#### Enable OpenAPI external references
-See [OpenAPI 2.0 spec](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#relative-schema-file-example).
+#### Enable Swagger external references
+See [Swagger 2.0 spec](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#relative-schema-file-example).
 Add `swagger-external-references.min.js` at the end of the body
 ```html
 <body>
@@ -364,10 +317,10 @@ A module is an object (can be a service) having a function `execute` which must 
 
 You can make your module modifying behaviours at different phases:
 
-* `BEFORE_LOAD`: allows modifying OpenAPI specification request before it is sent
-* `BEFORE_PARSE`: allows modifying OpenAPI specification after it has been loaded
-* `PARSE`: allows adding an OpenAPI parser for content types other than JSON
-* `BEFORE_DISPLAY`: allows modifying internal parsed OpenAPI specification before it is displayed
+* `BEFORE_LOAD`: allows modifying Swagger specification request before it is sent
+* `BEFORE_PARSE`: allows modifying Swagger specification after it has been loaded
+* `PARSE`: allows adding a Swagger parser for content types other than JSON
+* `BEFORE_DISPLAY`: allows modifying internal parsed Swagger specification before it is displayed
 * `BEFORE_EXPLORER_LOAD`: allows modifying API explorer request before it is sent
 * `AFTER_EXPLORER_LOAD`: allows modifying API explorer response before it is displayed
 
@@ -376,7 +329,7 @@ angular
 	.module('myApp', ['swaggerUi'])
 	.service('myModule', function($q) {
 
-		this.execute = function(data) {
+		this.execute = function() {
 			var deferred = $q.defer();
 			// if nothing done: call deferred.resolve(false);
 			// if success: call deferred.resolve(true);
@@ -386,9 +339,7 @@ angular
 
 	})
 	.run(function(swaggerModules, myModule){
-		// default priority is 1
-		// higher is the priority, sooner the module is executed at the specified phase
-		swaggerModules.add(swaggerModules.BEFORE_LOAD, myModule, priority);
+		swaggerModules.add(swaggerModules.BEFORE_LOAD, myModule);
 	})
 	...
 
